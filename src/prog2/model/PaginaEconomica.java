@@ -1,4 +1,5 @@
 package prog2.model;
 
-public class PaginaEconomica {
+public class PaginaEconomica extends PaginaBitacola{
+
 }
