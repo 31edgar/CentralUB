@@ -60,20 +60,23 @@ public class SistemaRefrigeracio implements InComponent {
     }
 
     public void revisa(PaginaIncidencies p) {
-        //BombaRefrigerant.revisa();
+        for (BombaRefrigerant b : bombesRefrigerants) {b.revisa(p);}
     }
 
     public float getCostOperatiu() {
-        return 130*bombesRefrigerants.size();
-        // Falta implementar el 25% de possibilitats d'inhabilitar una bomba. Entenc que es fa a PaginaIncidencies.
+        float cost = 0;
+        for (BombaRefrigerant b : bombesRefrigerants) {
+            // Queda entès que el cost operatiu és en base a les bombes actives, no a totes les bombes.
+            if (b.getActivat()) {cost += b.getCostOperatiu();}
+        }
+        return cost;
     }
 
     public float calculaOutput(float input) {
-        // N = nombre de bombes actives
-        int N = 0;
+        float output = 0;
         for (BombaRefrigerant b : bombesRefrigerants) {
-            if (b.getActivat()) {N++;}
+            if (b.getActivat()) {output += b.getCapacitat();}
         }
-        return Math.min(input, 250*N);
+        return output;
     }
 }

@@ -27,6 +27,7 @@ public class Reactor implements InComponent{
 
     //mètodes i getters
     public void activa() throws CentralUBException {
+        if (this.temperatura > 1000) {throw new CentralUBException("No es pot iniciar el generador si es supera la temperatura màxima");}
         this.activat = true;
     }
 
@@ -39,7 +40,7 @@ public class Reactor implements InComponent{
     }
 
     public void revisa(PaginaIncidencies p) {
-        // IMPLEMENTAR
+        if (temperatura > 1000) {p.afegeixIncidencia("El reactor es va desactivar per superar la temperatura màxima");}
     }
 
     public float getCostOperatiu() {

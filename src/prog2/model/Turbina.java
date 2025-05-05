@@ -38,7 +38,7 @@ public class Turbina implements InComponent {
     }
 
     public void revisa(PaginaIncidencies p) {
-        // implementar
+        if (!this.getActivat()) {p.afegeixIncidencia("Turbina fora de servei");}
     }
 
     public float getCostOperatiu() {

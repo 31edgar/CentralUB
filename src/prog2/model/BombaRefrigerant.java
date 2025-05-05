@@ -9,7 +9,6 @@ import prog2.vista.CentralUBException;
  *     que mouen l'aigua calenta generada pel reactor fins al generador de vapor.
  *     D’aquest manera, el sistema de refrigeració extreu el calor
  *     generat pel reactor, i el transporta fins al generador de vapor.
- *
 *</p>
  *
  * @author Guillem Calvet
@@ -60,7 +59,12 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     }
 
     public void revisa (PaginaIncidencies p) {
-        // CAL IMPLEMENTAR
+        if (foraDeServei) {p.afegeixIncidencia("La bomba refrigerant " + id + " està fora de servei");}
+
+        // Probabilitat del 25% de fallar el dia següent (la desactivem després d'haver comprovat la incidència).
+        if (variableUniforme.seguentValor() <= 25) {
+            foraDeServei = true;
+        }
     }
 
     public boolean getForaDeServei() {
@@ -68,11 +72,11 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     }
 
     public float getCapacitat() {
-        // CAL IMPLEMENTAR
+        return 250;
     }
 
     public float getCostOperatiu() {
-        // CAL IMPLEMENTAR
+        return 130;
     }
 
     @Override
