@@ -25,10 +25,16 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     // Atributs
     private int id;
     private boolean activat, foraDeServei;
+    // L'enunciat diu clarament que la classe ha tenir un id i dos booleans.
+    // Però després només diu que el constructor rep una variable uniforme
+    // Però he posat variable uniforme com a atribut perquè l'hem d'utilitzar a revisa
+    private VariableUniforme variableUniforme;
 
     public BombaRefrigerant(int id, VariableUniforme variableUniforme) {
         this.id = id;
-
+        this.variableUniforme = variableUniforme;
+        this.activat = true;
+        this.foraDeServei = false;
     }
 
     // Getters
@@ -55,7 +61,6 @@ public class BombaRefrigerant implements InBombaRefrigerant{
 
     public void revisa (PaginaIncidencies p) {
         // CAL IMPLEMENTAR
-
     }
 
     public boolean getForaDeServei() {
