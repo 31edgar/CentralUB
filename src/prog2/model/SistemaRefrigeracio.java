@@ -5,7 +5,7 @@ import prog2.vista.CentralUBException;
 import java.util.ArrayList;
 
 /**
- * Classe que repressenta un sistema de refrigeració
+ * Classe que representa un sistema de refrigeració
  *<p>
  *     El sistema de refrigeració està format per una sèrie de bombes refrigerants
  *     que mouen l'aigua calenta generada pel reactor fins al generador de vapor.
@@ -25,7 +25,6 @@ import java.util.ArrayList;
 public class SistemaRefrigeracio implements InComponent {
 
     //atributs
-    private boolean activat;
     private ArrayList<BombaRefrigerant> bombesRefrigerants;
 
     //constructor
@@ -36,18 +35,39 @@ public class SistemaRefrigeracio implements InComponent {
         this.bombesRefrigerants.add(b);
     }
 
+    // Activar totes les bombes
     public void activa() throws CentralUBException {
         for (BombaRefrigerant b : bombesRefrigerants) {
             b.activa();
+            return;
         }
-        this.activat = true;
     }
 
+    // Activar una bomba en específic (id)
+    public void activaBomba(int id) throws CentralUBException {
+        for (BombaRefrigerant b : bombesRefrigerants) {
+            if (b.getId() == id) {
+                b.activa();
+                return;
+            }
+        }
+    }
+
+    // Desactivar totes les bombes
     public void desactiva() {
         for (BombaRefrigerant b : bombesRefrigerants) {
             b.desactiva();
         }
-        this.activat = false;
+    }
+
+    // Desactivar una bomba en específic (id)
+    public void desactivaBomba(int id) throws CentralUBException {
+        for (BombaRefrigerant b : bombesRefrigerants) {
+            if (b.getId() == id) {
+                b.desactiva();
+                return;
+            }
+        }
     }
 
     public boolean getActivat() {

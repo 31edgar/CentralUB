@@ -19,7 +19,15 @@ public class PaginaIncidencies extends PaginaBitacola{
         incidencies.add("- Descripció Incidència: " + descIncidencia);
     }
 
+    // toString
+    @Override
     public String toString() {
-        return ("# Pàgina Incidencies + \n" + "- Dia: " + dia + "\n" + incidencies.toString() + "\n");
+        String str = "";
+
+        for (String incidencia : incidencies) {
+            str += incidencia + "\n";
+        }
+
+        return "# Pàgina Incidències\n- Dia: " + dia + "\n" + str;
     }
 }

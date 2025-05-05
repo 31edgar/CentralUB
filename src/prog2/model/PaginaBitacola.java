@@ -19,4 +19,3 @@ public class PaginaBitacola {
         this.dia = dia;
     }
 }
-

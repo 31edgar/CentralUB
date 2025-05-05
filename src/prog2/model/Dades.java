@@ -4,17 +4,30 @@
  */
 package prog2.model;
 
+import prog2.vista.CentralUBException;
+
+import java.util.List;
+
 /**
  *
  * @author Daniel Ortiz
  */
-public class Dades {
+public class Dades implements InDades{
     public final static long  VAR_UNIF_SEED = 123;
     public final static float GUANYS_INICIALS = 0;
     public final static float PREU_UNITAT_POTENCIA = 1;
     public final static float PENALITZACIO_EXCES_POTENCIA = 250;
 
-    // Afegir atributs:
+    // Atributs
+    private VariableUniforme variableUniforme;
+    private float insercioBarres;
+    private Reactor reactor;
+    private SistemaRefrigeracio sistemaRefrigeracio;
+    private GeneradorVapor generadorVapor;
+    private Turbina turbina;
+    private Bitacola bitacola;
+    private int dia;
+    private float guanysAcumulats;
 
     public Dades(){
         // Inicialitza Atributs
@@ -44,7 +57,72 @@ public class Dades {
 
         this.sistemaRefrigeracio.desactiva();
     }
-    
+
+    // Getters i Setters
+    public float getInsercioBarres() {
+        return this.insercioBarres;
+    }
+
+    public void setInsercioBarres(float insercioBarres) throws CentralUBException {
+        if (insercioBarres < 0 || insercioBarres > 100) {
+            throw new CentralUBException("No es permet fixar un grau d’inserció fora de l’interval 0-100");
+        }
+
+        this.insercioBarres = insercioBarres;
+    }
+
+    // Reactor
+    public void activaReactor() throws CentralUBException {
+        reactor.activa();
+    }
+
+    public void desactivaReactor() {
+        reactor.desactiva();
+    }
+
+    public Reactor mostraReactor() {
+        return this.reactor;
+    }
+
+    // Sistema de Refrigeració
+    public void activaBomba(int id) throws CentralUBException {
+        sistemaRefrigeracio.activaBomba(id);
+    }
+
+    public void desactivaBomba(int id) {
+        sistemaRefrigeracio.desactivaBomba(id);
+    }
+
+    public SistemaRefrigeracio mostraSistemaRefrigeracio() {
+        return this.sistemaRefrigeracio;
+    }
+
+    // Bitàcola
+    public float calculaPotencia() {
+        return turbina.calculaOutput(generadorVapor.calculaOutput(sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(insercioBarres))));
+    }
+
+    public float getGuanysAcumulats() {
+        return this.guanysAcumulats;
+    }
+
+    public PaginaEstat mostraEstat() {
+        float outputReactor = reactor.calculaOutput(insercioBarres);
+        float outputSistemaRefrigeracio = sistemaRefrigeracio.calculaOutput(outputReactor);
+        float outputGeneradorVapor = generadorVapor.calculaOutput(outputSistemaRefrigeracio);
+        float outputTurbina = turbina.calculaOutput(outputGeneradorVapor);
+
+        return new PaginaEstat(dia, insercioBarres, outputReactor, outputSistemaRefrigeracio, outputGeneradorVapor, outputTurbina);
+    }
+
+    public Bitacola mostraBitacola() {
+        return bitacola;
+    }
+
+    public List<PaginaIncidencies> mostraIncidencies() {
+        return bitacola.getIncidencies();
+    }
+
     /**
      * Actualitza l'economia de la central. Genera una pàgina econòmica a 
      * partir de la demanda de potencia actual. Aquesta pàgina econòmica inclou 
@@ -53,14 +131,24 @@ public class Dades {
      * @param demandaPotencia Demanda de potència actual.
      */
     private PaginaEconomica actualitzaEconomia(float demandaPotencia){
-          // Completar
+        float potencia = calculaPotencia() * PREU_UNITAT_POTENCIA;
+        float benefici = Math.min(potencia, demandaPotencia);
+        float penalitzacio = (potencia > demandaPotencia) ? PENALITZACIO_EXCES_POTENCIA : 0;
+        float costOperatiu = 5 + reactor.getCostOperatiu() + sistemaRefrigeracio.getCostOperatiu() + generadorVapor.getCostOperatiu() + turbina.getCostOperatiu(); // Comença a 5 per les barres de control
+        float percentatgeDemandaSatisfeta = (potencia/demandaPotencia) * 100;
+
+        // Actualitzem els guanys acumulats
+        guanysAcumulats += benefici - penalitzacio - costOperatiu;
+
+        return new PaginaEconomica(dia, demandaPotencia, benefici, percentatgeDemandaSatisfeta, potencia, penalitzacio, costOperatiu, guanysAcumulats);
     }
 
     /**
      * Aquest mètode ha de establir la nova temperatura del reactor.
      */
     private void refrigeraReactor() {
-          // Completar
+          float temperatura = reactor.calculaOutput(insercioBarres) - sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(insercioBarres));
+          reactor.setTemperatura(temperatura);
     }
 
     /**
@@ -70,7 +158,10 @@ public class Dades {
      * @param paginaIncidencies Pàgina d'incidències.
      */
     private void revisaComponents(PaginaIncidencies paginaIncidencies) {
-          // Completar
+          reactor.revisa(paginaIncidencies);
+          sistemaRefrigeracio.revisa(paginaIncidencies);
+          generadorVapor.revisa(paginaIncidencies);
+          turbina.revisa(paginaIncidencies);
     }
 
     public Bitacola finalitzaDia(float demandaPotencia) {

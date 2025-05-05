@@ -3,7 +3,7 @@ package prog2.model;
 import prog2.vista.CentralUBException;
 
 /**
- * Classe que repressenta un sistema de refrigeració
+ * Classe que representa una turbina
  *<p>
  *     El vapor generat pel generador es fa servir per moure la turbina,
  *     generant energia elèctrica.

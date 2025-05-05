@@ -3,7 +3,7 @@ package prog2.model;
 import prog2.vista.CentralUBException;
 
 /**
-* Classe que repressenta una bomba refrigerant
+* Classe que representa una bomba refrigerant
 *<p>
  *     El sistema de refrigeració està format per una sèrie de bombes refrigerants
  *     que mouen l'aigua calenta generada pel reactor fins al generador de vapor.
@@ -29,7 +29,7 @@ public class BombaRefrigerant implements InBombaRefrigerant{
     // Però he posat variable uniforme com a atribut perquè l'hem d'utilitzar a revisa
     private VariableUniforme variableUniforme;
 
-    public BombaRefrigerant(int id, VariableUniforme variableUniforme) {
+    public BombaRefrigerant(VariableUniforme variableUniforme, int id) {
         this.id = id;
         this.variableUniforme = variableUniforme;
         this.activat = true;

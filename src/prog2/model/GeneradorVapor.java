@@ -3,7 +3,7 @@ package prog2.model;
 import prog2.vista.CentralUBException;
 
 /**
- * Classe que repressenta un sistema de refrigeració
+ * Classe que representa un generador de vapor
  *<p>
  *     El generador de vapor transmet calor del circuit d’ai gua primari al circuit d’aigua secundari.
  *     Això permet que l’aigua en estat líquid del circuit secundari es converteixi en vapor.
