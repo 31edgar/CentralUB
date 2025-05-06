@@ -85,6 +85,14 @@ public class Dades implements InDades{
     }
 
     // Sistema de Refrigeració
+    public void activaBombes() throws CentralUBException {
+        sistemaRefrigeracio.activa();
+    }
+
+    public void desactivaBombes() {
+        sistemaRefrigeracio.desactiva();
+    }
+
     public void activaBomba(int id) throws CentralUBException {
         sistemaRefrigeracio.activaBomba(id);
     }
@@ -130,7 +138,7 @@ public class Dades implements InDades{
      * guanys acumulats.
      * @param demandaPotencia Demanda de potència actual.
      */
-    private PaginaEconomica actualitzaEconomia(float demandaPotencia){
+    public PaginaEconomica actualitzaEconomia(float demandaPotencia){
         float potencia = calculaPotencia() * PREU_UNITAT_POTENCIA;
         float benefici = Math.min(potencia, demandaPotencia);
         float penalitzacio = (potencia > demandaPotencia) ? PENALITZACIO_EXCES_POTENCIA : 0;
