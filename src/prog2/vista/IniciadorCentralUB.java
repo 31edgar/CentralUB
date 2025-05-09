@@ -5,7 +5,7 @@
  */
 package prog2.vista;
 
-import prog2.model.CentralUB;
+import prog2.vista.CentralUB;
 
 /**
  *

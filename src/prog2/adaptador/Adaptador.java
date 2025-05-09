@@ -3,13 +3,12 @@ package prog2.adaptador;
 import java.io.*;
 
 import prog2.model.Dades;
-import prog2.model.PaginaEstat;
 import prog2.vista.*;
 
-public class Adaptador implements Serializable {
+public class Adaptador {
 
     // creem una instància de Dades i un atribut per a carregar una central
-    private static final Dades dades = new Dades();
+    private static Dades dades = new Dades();
 
     // mètodes
     public static String finalitzaDia(float demandaPotencia) {
@@ -62,27 +61,28 @@ public class Adaptador implements Serializable {
     public static String mostraIncidencies(){
         return dades.mostraIncidencies().toString();
     }
-    public static String mostraEconomia(float demandaPotencia){
-        return dades.actualitzaEconomia(demandaPotencia).toString();
+    public static float[] mostraDemandaSatisfeta(float demandaPotencia){
+        return dades.demandaSatisfeta(demandaPotencia);
     }
 
-    // tractament de dades (s'ha de modificar i completar)
+    // tractament de dades
+
     /**
      * Guarda l'estat actual de la central en un fitxer.
      *
      * @param camiDesti Ruta del fitxer on es guardarà l'estat
      * @throws CentralUBException Si hi ha un error en el procés de guardat
      */
-    public static void guardaDades(CentralUB centralUB, String camiDesti) throws CentralUBException {
+    public static void guardaDades(String camiDesti) throws CentralUBException {
         File fitxer = new File(camiDesti);
 
         try {
             FileOutputStream fout = new FileOutputStream(fitxer);
             ObjectOutputStream oos = new ObjectOutputStream(fout);
-            oos.writeObject(centralUB);
+            oos.writeObject(dades);
             fout.close();
-        } catch (IOException e) {
-            throw new CentralUBException("Error al guardar l'arxiu: " + e.getMessage());
+        } catch (Exception e) {
+            throw new CentralUBException("No s'ha pogut guardar la central.");
         }
     }
     /**
@@ -91,15 +91,13 @@ public class Adaptador implements Serializable {
      * @param camiOrigen Ruta del fitxer a carregar
      * @throws CentralUBException Si hi ha un error en el procés de càrrega
      */
-    public static CentralUB carregaDades(String camiOrigen) throws CentralUBException {
+    public static void carregaDades(String camiOrigen) throws CentralUBException {
         try {
             FileInputStream fin = new FileInputStream(camiOrigen);
             ObjectInputStream ois = new ObjectInputStream(fin);
-            CentralUB centralCarregada = (CentralUB)ois.readObject();
-            fin.close();
-            return centralCarregada;
+            dades = (Dades)ois.readObject();
         } catch (Exception e) {
-            throw new CentralUBException("Error al guardar l'arxiu");
+            throw new RuntimeException(e);
         }
     }
 

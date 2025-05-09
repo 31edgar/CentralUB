@@ -6,13 +6,14 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  *
  * @author Daniel Ortiz
  */
-public class Dades implements InDades{
+public class Dades implements InDades, Serializable {
     public final static long  VAR_UNIF_SEED = 123;
     public final static float GUANYS_INICIALS = 0;
     public final static float PREU_UNITAT_POTENCIA = 1;
@@ -108,6 +109,11 @@ public class Dades implements InDades{
     // Bitàcola
     public float calculaPotencia() {
         return turbina.calculaOutput(generadorVapor.calculaOutput(sistemaRefrigeracio.calculaOutput(reactor.calculaOutput(insercioBarres))));
+    }
+
+    public float[] demandaSatisfeta(float demandaPotencia) {
+        float potencia = calculaPotencia(), percentatge = (potencia/demandaPotencia) * 100;
+        return new float[]{demandaPotencia, calculaPotencia(), percentatge};
     }
 
     public float getGuanysAcumulats() {

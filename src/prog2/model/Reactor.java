@@ -60,4 +60,11 @@ public class Reactor implements InComponent{
     public void setTemperatura(float temperatura) {
         this.temperatura = temperatura;
     }
+
+    @Override
+    public String toString() {
+        return "Activat= " + activat + ", Temperatura= " + temperatura + "\n";
+    }
 }
+
+

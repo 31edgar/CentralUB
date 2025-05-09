@@ -4,6 +4,7 @@
  */
 package prog2.model;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**

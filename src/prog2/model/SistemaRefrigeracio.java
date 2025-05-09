@@ -28,7 +28,9 @@ public class SistemaRefrigeracio implements InComponent {
     private ArrayList<BombaRefrigerant> bombesRefrigerants;
 
     //constructor
-    public SistemaRefrigeracio() {}
+    public SistemaRefrigeracio() {
+        bombesRefrigerants = new ArrayList<>();
+    }
 
     //mètodes
     public void afegirBomba(BombaRefrigerant b) throws CentralUBException {
@@ -98,5 +100,15 @@ public class SistemaRefrigeracio implements InComponent {
             if (b.getActivat()) {output += b.getCapacitat();}
         }
         return output;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        for (BombaRefrigerant bomba : bombesRefrigerants)
+            sb.append(bomba.toString() + "\n");
+
+        return sb.toString();
     }
 }
