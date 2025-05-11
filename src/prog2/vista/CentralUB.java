@@ -63,39 +63,39 @@ public class CentralUB {
     }
 
     static private String[] descMenuPrincipal = {
-            "Dona pas a un submenú que permet obtenir o establir la inserció de les barres, que ha de ser un nombre entre 0 i 100.",
-            "Mostra un submenú per gestionar el reactor.",
-            "Mostra un submenú amb opcions per controlar el sistema de refrigeració.",
-            "Mostra la pàgina de bitàcola d'estat corresponent al dia actual. Aquesta informació és provisional i només es farà efectiva al finalitzar el dia.",
-            "Mostra tot el contingut de la bitàcola fins al dia actual, incloent les pàgines d'estat, econòmiques i d'incidències.",
-            "Mostra totes les pàgines d'incidències de la bitàcola fins al dia actual.",
-            "Mostra la demanda de potència del dia en curs, la potència generada amb la configuració de la central actual i el percentatge de demanda satisfeta corresponent.",
-            "Es duen a terme totes les accions relacionades amb la finalització d'un dia.",
+            "Gestionar inserció de barres",
+            "Gestionar el reactor",
+            "Gestionar el sistema de refrigeració",
+            "Mostrar l'estat del dia actual",
+            "Mostrar bitàcola",
+            "Mostra incidències",
+            "Mostra demanda satisfeta",
+            "Finalitza dia",
             "Guarda les dades de l'aplicació.",
             "Carrega les dades de l'aplicació.",
-            "Surt de l'aplicació."
+            "Sortir"
     };
 
     static private String[] descSubmenuBarresDeControl = {
-      "Mostra per pantalla la inserció de les barres.",
-      "Sol·licita a l'usuari el grau d'inserció de les barres.",
-      "Torna al menú principal."
+      "Mostra inserció de barres",
+      "Estableix inserció de barres",
+      "Tornar al menú principal."
     };
 
     static private String[] descSubmenuReactor = {
-      "Permet activar el reactor.",
-      "Permet desactivar el reactor.",
-      "Mostra si el reactor està activat i la seva temperatura.",
-      "Torna al menú principal."
+      "Activar el reactor.",
+      "Desactivar el reactor.",
+      "Mostra informació del reactor",
+      "Tornar al menú principal."
     };
 
     static private String[] descSubmenuSistemaDeRefrigeracio = {
         "Activa totes les bombes refrigerants.",
         "Desactiva totes les bombes refrigerants.",
-        "Donat el seu identificador numèric (entre 0 i 3), permet activar una bomba refrigerant.",
-        "Donat l'identificador numèric d'una bomba refrigerant, permet desactivar-la.",
-        "Mostra l'estat actual de totes les bombes del sistema de refrigeració.",
-        "Torna al menú principal."
+        "Activar una bomba amb identificador (0-3)",
+        "Desactivar una bomba amb identificador (0-3)",
+        "Mostrar l'estat de les bombes",
+        "Tornar al menú principal."
     };
 
     /* ---------------- MATERIAL DEL MENÚ -------------------------------------------------------------------------------------- */
@@ -153,21 +153,21 @@ public class CentralUB {
                     break;
                 case MOSTRA_ESTAT_CENTRAL:
                     try {
-                        Adaptador.mostraEstatCentral();
+                        System.out.println(Adaptador.mostraEstatCentral());
                     } catch (CentralUBException e) {
                         System.out.println("ERROR: " + e.getMessage());
                     }
                     break;
                 case MOSTRA_BITACOLA:
                     try {
-                        Adaptador.mostraBitacola();
+                        System.out.println(Adaptador.mostraBitacola());
                     } catch (CentralUBException e) {
                         System.out.println("ERROR: " + e.getMessage());
                     }
                     break;
                 case MOSTRA_INCIDENCIES:
                     try {
-                        Adaptador.mostraIncidencies();
+                        System.out.println(Adaptador.mostraIncidencies());
                     } catch (CentralUBException e) {
                         System.out.println("ERROR: " + e.getMessage());
                     }
