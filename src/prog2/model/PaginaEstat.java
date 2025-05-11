@@ -1,5 +1,7 @@
 package prog2.model;
 
+import java.io.Serializable;
+
 /**
  * Classe que representa una pàgina d'estat dins de la bitàcola de la central nuclear.
  * <p>
@@ -16,7 +18,7 @@ package prog2.model;
  * @since 1.0
  * @see PaginaBitacola
  */
-public class PaginaEstat extends PaginaBitacola {
+public class PaginaEstat extends PaginaBitacola implements Serializable {
 
     // Atributs
     private float insercioBarres;

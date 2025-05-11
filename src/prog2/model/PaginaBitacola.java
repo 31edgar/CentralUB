@@ -1,5 +1,7 @@
 package prog2.model;
 
+import java.io.Serializable;
+
 /**
  * Classe abstracta que representa una pàgina de bitàcola en una central nuclear.
  * <p>
@@ -15,7 +17,7 @@ package prog2.model;
  * @see Bitacola
  * @since 1.0
  */
-public abstract class PaginaBitacola {
+public abstract class PaginaBitacola implements Serializable {
 
     // Atributs
     private int dia;

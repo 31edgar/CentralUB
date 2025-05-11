@@ -1,5 +1,7 @@
 package prog2.model;
 
+import java.io.Serializable;
+
 /**
  * Classe que representa una pàgina econòmica dins de la bitàcola de la central nuclear.
  * <p>
@@ -15,7 +17,7 @@ package prog2.model;
  * @see PaginaBitacola
  * @since 1.0
  */
-public class PaginaEconomica extends PaginaBitacola {
+public class PaginaEconomica extends PaginaBitacola implements Serializable {
 
     // Atributs
     private float demandaPotencia;

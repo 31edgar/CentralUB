@@ -2,6 +2,8 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
+import java.io.Serializable;
+
 /**
  * Classe que representa un generador de vapor en una central nuclear.
  * <p>
@@ -21,7 +23,7 @@ import prog2.vista.CentralUBException;
  * @see PaginaIncidencies
  * @since 1.0
  */
-public class GeneradorVapor implements InComponent {
+public class GeneradorVapor implements InComponent, Serializable {
 
     // Atributs
     private boolean activat;

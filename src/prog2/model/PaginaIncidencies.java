@@ -1,5 +1,6 @@
 package prog2.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  * @see PaginaBitacola
  * @since 1.0
  */
-public class PaginaIncidencies extends PaginaBitacola {
+public class PaginaIncidencies extends PaginaBitacola implements Serializable {
 
     // Atributs
     private ArrayList<String> incidencies;

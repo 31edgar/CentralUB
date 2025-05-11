@@ -176,7 +176,7 @@ public class Adaptador {
             FileOutputStream fout = new FileOutputStream(fitxer);
             ObjectOutputStream oos = new ObjectOutputStream(fout);
             oos.writeObject(dades);
-            fout.close();
+            oos.close();
         } catch (Exception e) {
             throw new CentralUBException("No s'ha pogut guardar la central.");
         }
@@ -193,6 +193,7 @@ public class Adaptador {
             FileInputStream fin = new FileInputStream(camiOrigen);
             ObjectInputStream ois = new ObjectInputStream(fin);
             dades = (Dades) ois.readObject();
+            ois.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

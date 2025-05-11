@@ -2,6 +2,8 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
+import java.io.Serializable;
+
 /**
  * Classe que representa una bomba refrigerant dins del sistema de refrigeració d'una central nuclear.
  * <p>
@@ -16,7 +18,7 @@ import prog2.vista.CentralUBException;
  * @see SistemaRefrigeracio
  * @since 1.0
  */
-public class BombaRefrigerant implements InBombaRefrigerant {
+public class BombaRefrigerant implements InBombaRefrigerant, Serializable {
 
     /** Identificador de la bomba */
     private int id;

@@ -2,6 +2,8 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
+import java.io.Serializable;
+
 /**
  * Classe que representa un reactor dins d'una central nuclear.
  * <p>
@@ -17,7 +19,7 @@ import prog2.vista.CentralUBException;
  * @see CentralUBException
  * @since 1.0
  */
-public class Reactor implements InComponent {
+public class Reactor implements InComponent, Serializable {
 
     // Atributs
     private boolean activat;

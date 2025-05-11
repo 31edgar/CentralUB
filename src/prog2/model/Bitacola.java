@@ -1,5 +1,6 @@
 package prog2.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import java.util.List;
  * @version 1.0
  * @since 1.0
  */
-public class Bitacola implements InBitacola {
+public class Bitacola implements InBitacola, Serializable {
 
     /** Llista de pàgines de la bitàcola */
     ArrayList<PaginaBitacola> pagines;

@@ -2,6 +2,8 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
+import java.io.Serializable;
+
 /**
  * Classe que representa una turbina dins d'una central nuclear.
  * <p>
@@ -17,7 +19,7 @@ import prog2.vista.CentralUBException;
  * @see CentralUBException
  * @since 1.0
  */
-public class Turbina implements InComponent {
+public class Turbina implements InComponent, Serializable {
 
     // Atributs
     private boolean activat;

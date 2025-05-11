@@ -331,10 +331,12 @@ public class CentralUB {
     }
 
     private void guardarDades(Scanner sc) throws CentralUBException{
+        System.out.println("Escriu el camí de destí: ");
         Adaptador.guardaDades(sc.nextLine());
     }
 
     private void carregaDades(Scanner sc) throws CentralUBException{
+        System.out.println("Escriu el camí d'origen: ");
         Adaptador.carregaDades(sc.nextLine());
     }
 

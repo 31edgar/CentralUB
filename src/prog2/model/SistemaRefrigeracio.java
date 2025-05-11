@@ -2,6 +2,7 @@ package prog2.model;
 
 import prog2.vista.CentralUBException;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -20,7 +21,7 @@ import java.util.ArrayList;
  * @see SistemaRefrigeracio
  * @since 1.0
  */
-public class SistemaRefrigeracio implements InComponent {
+public class SistemaRefrigeracio implements InComponent, Serializable {
 
     // Atributs
     private ArrayList<BombaRefrigerant> bombesRefrigerants;
