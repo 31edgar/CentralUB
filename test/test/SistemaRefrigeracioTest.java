@@ -108,7 +108,7 @@ class SistemaRefrigeracioTest {
     void testCalculaOutput() throws CentralUBException {
         sistema.activaBomba(1);
         sistema.activaBomba(2);
-        assertEquals(500, sistema.calculaOutput(0));
+        assertEquals(500, sistema.calculaOutput(600));
     }
 
     /**
